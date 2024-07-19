@@ -3,7 +3,10 @@ from flask import Flask, render_template, request
 app = Flask(__name__)
 
 import google.generativeai as palm
-palm.configure(api_key="AIzaSyCCT1K99BJ1JbLwhCE7qOcQ5KOZcPJ9ZZ4")
+import os
+
+api = os.getenv("MAKERSUITE_API_TOKEN")
+palm.configure(api_key=api)
 model = {"model":"models/chat-bison-001"}
 
 @app.route("/",methods=["GET","POST"])
